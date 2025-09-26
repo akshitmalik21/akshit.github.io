@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The interactive portfolio of Akshit Malik, a DevOps Engineer at Akamai, specializing in cloud automation, CI/CD, and site reliability.">
+    <title>Akshit Malik - DevOps Engineer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #007BFF;
+            --background-dark: #121212;
+            --card-dark: #1e1e1e;
+            --text-dark: #f0f0f0;
+            --text-secondary-dark: #a0a0a0;
+            --background-light: #f4f7f9;
+            --card-light: #ffffff;
+            --text-light: #1c1c1c;
+            --text-secondary-light: #555555;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+            position: relative;
+        }
+        
+        body.dark-mode {
+            --bg: var(--background-dark);
+            --card-bg: var(--card-dark);
+            --text: var(--text-dark);
+            --text-secondary: var(--text-secondary-dark);
+            --shadow: rgba(0, 0, 0, 0.4);
+            background-color: var(--bg);
+            color: var(--text);
+        }
+        body.light-mode {
+            --bg: var(--background-light);
+            --card-bg: var(--card-light);
+            --text: var(--text-light);
+            --text-secondary: var(--text-secondary-light);
+            --shadow: rgba(0, 0, 0, 0.1);
+            background-color: var(--bg);
+            color: var(--text);
+        }
+        
+        .container { 
+            max-width: 1100px; 
+            margin: 2rem auto; 
+            padding: 0 2rem; 
+            position: relative; 
+            z-index: 2; 
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+        body.dark-mode header {
+            background-color: rgba(30, 30, 30, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 2rem; 
+        }
+        nav .logo { 
+            font-size: 1.6rem; 
+            font-weight: 700; 
+            color: var(--primary-color); 
+        }
+        #theme-toggle { 
+            cursor: pointer; 
+            font-size: 1.5rem; 
+            background: none; 
+            border: none; 
+            color: var(--text); 
+            transition: transform 0.2s;
+        }
+        #theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        nav ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+            align-items: center; 
+        }
+        nav ul li { 
+            margin-left: 25px; 
+        }
+        nav ul li a { 
+            text-decoration: none; 
+            color: var(--text); 
+            font-weight: 500; 
+            transition: color 0.3s ease; 
+        }
+        nav ul li a:hover { 
+            color: var(--primary-color); 
+        }
+
+        .hero { 
+            text-align: center; 
+            padding: 5rem 1rem; 
+            position: relative;
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,123,255,0.4)), url('20250824_122938.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        .hero h1 { 
+            font-size: clamp(2.5rem, 5vw, 3.5rem); 
+            margin-bottom: 0.5rem; 
+            font-weight: 700; 
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8); 
+        }
+        .hero h2 { 
+            font-size: clamp(1.2rem, 3vw, 1.8rem); 
+            margin-bottom: 2rem; 
+            min-height: 50px; 
+            font-weight: 400; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); 
+        }
+        .hero .cta-buttons a {
+            text-decoration: none; 
+            color: #fff; 
+            background-color: var(--primary-color);
+            padding: 12px 28px; 
+            border-radius: 50px; 
+            margin: 5px; 
+            display: inline-block;
+            font-weight: 600; 
+            border: 2px solid var(--primary-color); 
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+        .hero .cta-buttons a:hover {
+            background-color: transparent; 
+            color: var(--primary-color); 
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+        }
+
+        section {
+            background-color: rgba(255,255,255,0.95);
+            margin-bottom: 2.5rem; 
+            padding: clamp(1.5rem, 5vw, 3rem);
+            border-radius: 12px; 
+            box-shadow: 0 8px 30px var(--shadow);
+            transition: background-color 0.3s;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+        body.dark-mode section {
+            background-color: rgba(30,30,30,0.95);
+        }
+        
+        section h2 { 
+            font-size: clamp(1.8rem, 4vw, 2.5rem); 
+            font-weight: 600; 
+            color: var(--primary-color); 
+            text-align: center; 
+            margin-bottom: 3rem; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3); 
+        }
+        
+        /* Section-specific backgrounds with better text contrast */
+        #impact { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(0,123,255,0.1)), url('IMG-20250903-WA0041.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        body.dark-mode #impact { 
+            background: linear-gradient(135deg, rgba(30,30,30,0.9), rgba(0,123,255,0.2)), url('IMG-20250903-WA0041.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        
+        #experience { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(0,123,255,0.08)), url('20250831_185621.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        body.dark-mode #experience { 
+            background: linear-gradient(135deg, rgba(30,30,30,0.92), rgba(0,123,255,0.18)), url('20250831_185621.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        
+        #tools { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(0,123,255,0.08)), url('20250623_142030.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        body.dark-mode #tools { 
+            background: linear-gradient(135deg, rgba(30,30,30,0.92), rgba(0,123,255,0.18)), url('20250623_142030.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        
+        #game-section { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(0,123,255,0.08)), url('20250911_080023.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        body.dark-mode #game-section { 
+            background: linear-gradient(135deg, rgba(30,30,30,0.92), rgba(0,123,255,0.18)), url('20250911_080023.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        
+        #contact { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(0,123,255,0.08)), url('IMG-20250902-WA0168.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        body.dark-mode #contact { 
+            background: linear-gradient(135deg, rgba(30,30,30,0.92), rgba(0,123,255,0.18)), url('IMG-20250902-WA0168.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+        
+        .highlights-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 1.5rem; 
+        }
+        
+        .highlight-card { 
+            background: rgba(255,255,255,0.3); 
+            padding: 1.5rem; 
+            border-radius: 8px; 
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0,123,255,0.2);
+        }
+        
+        body.dark-mode .highlight-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        body.dark-mode .highlight-card:hover {
+            box-shadow: 0 12px 25px rgba(0,123,255,0.3);
+        }
+        
+        .highlight-card h3 { 
+            font-size: 2.5rem; 
+            color: var(--primary-color); 
+            margin: 0 0 0.5rem 0; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3); 
+        }
+        .highlight-card p { 
+            font-size: 1rem; 
+            color: var(--text); 
+            margin: 0; 
+            text-shadow: 0px 1px 1px rgba(0,0,0,0.1); 
+        }
+
+        /* Auto-rotating slider for Beyond Tech section - Slower & Better Visibility */
+        .passion-slider {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .passion-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .passion-slide.active {
+            opacity: 1;
+        }
+
+        .passion-content {
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .passion-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+            color: #00ddff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .passion-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .dot.active {
+            background: #00ddff;
+            border-color: #00ddff;
+            transform: scale(1.2);
+        }
+
+        .job { 
+            margin-bottom: 2.5rem; 
+        }
+        .job h3 { 
+            color: var(--primary-color); 
+            margin-bottom: 0.2rem; 
+            text-shadow: 0px 1px 1px rgba(0,0,0,0.1); 
+        }
+        .job .company { 
+            font-style: italic; 
+            color: var(--text-secondary); 
+        }
+        .job .date { 
+            color: var(--text-secondary); 
+            font-size: 0.9rem; 
+            margin-bottom: 1rem; 
+        }
+        .job ul { 
+            padding-left: 20px; 
+        }
+        .job li { 
+            margin-bottom: 0.5rem; 
+            text-shadow: 0px 1px 1px rgba(0,0,0,0.05); 
+        }
+        
+        .tools-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: clamp(1rem, 5vw, 2rem); 
+            justify-content: center; 
+        }
+        .tool { 
+            text-align: center; 
+            width: 100px; 
+            background: rgba(255,255,255,0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        body.dark-mode .tool {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .tool img { 
+            height: 60px; 
+            object-fit: contain; 
+            transition: transform 0.3s; 
+        }
+        .tool:hover { 
+            transform: scale(1.05); 
+        }
+        .tool:hover img { 
+            transform: scale(1.15); 
+        }
+        .tool p { 
+            margin-top: 0.5rem; 
+            font-weight: 500; 
+            font-size: 0.9rem; 
+            text-shadow: 0px 1px 1px rgba(0,0,0,0.1); 
+        }
+        
+        #game-section { 
+            text-align: center; 
+        }
+        #game-container { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        #pipeline-stages { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+        .stage {
+            border: 2px dashed var(--text-secondary); 
+            border-radius: 10px; 
+            width: 100px; 
+            height: 100px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(8px);
+            text-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+        }
+        body.dark-mode .stage {
+            background: rgba(0,0,0,0.4);
+        }
+        .stage.filled { 
+            border-style: solid; 
+            border-color: var(--primary-color); 
+        }
+        #icon-pool { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            margin-top: 20px; 
+            flex-wrap: wrap; 
+        }
+        .icon { 
+            width: 60px; 
+            height: 60px; 
+            cursor: grab; 
+            transition: transform 0.2s; 
+        }
+        #game-feedback { 
+            font-weight: bold; 
+            min-height: 24px; 
+            margin-top: 20px; 
+            text-shadow: 0px 1px 1px rgba(0,0,0,0.2); 
+        }
+        
+        /* Book a 1:1 Session Button with Subtle Background */
+        .session-button-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 5px;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            margin-top: 2rem;
+        }
+
+        body.light-mode .session-button-container {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info-box {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .contact-info-box {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info-box p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        body.light-mode .contact-info-box p {
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info-box a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-box a:hover {
+            text-shadow: 0 0 8px var(--primary-color);
+        }
+        
+        .fade-in { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+        }
+        .fade-in.is-visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        
+        footer { 
+            text-align: center; 
+            padding: 2rem; 
+            color: var(--text-secondary);
+            background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(0,123,255,0.08)), url('20250718_194247.jpg');
+            background-size: cover; 
+            background-position: center;
+            text-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+        }
+        body.dark-mode footer {
+            background: linear-gradient(135deg, rgba(30,30,30,0.92), rgba(0,123,255,0.18)), url('20250718_194247.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero, section, footer { 
+                background-attachment: scroll; 
+            }
+            nav { 
+                flex-direction: column; 
+            }
+            nav ul { 
+                margin-top: 1rem; 
+            }
+            .passion-slider { 
+                height: 350px; 
+            }
+            .passion-content { 
+                padding: 1.5rem; 
+                max-width: 400px; 
+            }
+            .passion-content h3 { 
+                font-size: 1.8rem; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">&lt;Akshit /&gt;</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#beyond-tech">Beyond Tech</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button id="theme-toggle">☀️</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="home" class="hero">
+            <h1>Akshit Malik</h1>
+            <h2 id="typed-text"></h2>
+            <div class="cta-buttons">
+                <a href="ResumeAkshit.pdf" download>Download Resume</a>
+            </div>
+        </section>
+
+        <section id="impact" class="fade-in">
+            <h2>Impact Highlights</h2>
+            <div class="highlights-grid">
+                <div class="highlight-card"><h3>80%</h3><p>Faster deployments from streamlined client migration architecture.</p></div>
+                <div class="highlight-card"><h3>25%</h3><p>Reduction in DevOps involvement via a variable promotion automation pipeline.</p></div>
+                <div class="highlight-card"><h3>99%+</h3><p>SLA adherence guaranteed in managing multi-account cloud environments.</p></div>
+                <div class="highlight-card"><h3>40%</h3><p>Decrease in troubleshooting time through automated Python and Bash scripts.</p></div>
+                <div class="highlight-card"><h3>$40k+</h3><p>Saved in AWS Support costs by upgrading over 100 EKS clusters.</p></div>
+                <div class="highlight-card"><h3>24/7</h3><p>Production support provided across diverse platforms, ensuring seamless operations.</p></div>
+            </div>
+        </section>
+        
+        <section id="game-section" class="fade-in">
+            <h2>DevOps Challenge: Build the Pipeline</h2>
+            <p style="margin-top: -20px; margin-bottom: 30px;">Drag and drop the icons into the correct CI/CD stages!</p>
+            <div id="game-container">
+                <div id="pipeline-stages">
+                    <div class="stage" data-stage="build">Build</div>
+                    <div class="stage" data-stage="test">Test</div>
+                    <div class="stage" data-stage="deploy">Deploy</div>
+                </div>
+                <div id="icon-pool"></div>
+                <p id="game-feedback"></p>
+            </div>
+        </section>
+
+        <section id="experience" class="fade-in">
+            <h2>Work Experience</h2>
+            <div class="job">
+                <h3>Site Reliability Engineer II</h3><p class="company">Akamai, Remote</p><p class="date">Sep 2025 - Present</p>
+                <ul>
+                    <li>Maintaining and enhancing the reliability of one of the world's largest distributed computing platforms.</li>
+                    <li>Automating infrastructure provisioning and management using Terraform and custom scripting.</li>
+                    <li>Developing monitoring solutions to proactively identify and resolve system issues.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Site Reliability Engineer</h3><p class="company">Innovaccer, Noida</p><p class="date">Oct 2023 - Aug 2025</p>
+                <ul>
+                    <li>Managed 50+ microservices on AWS EKS and Azure AKS, using ArgoCD for GitOps-driven deployments.</li>
+                    <li>Architected a promotion automation pipeline that cut DevOps involvement by 25% and standardized configurations across clients.</li>
+                    <li>Led the upgrade of over 100 EKS clusters, saving $40k+ in potential AWS Extended Support costs.</li>
+                    <li>Authored 100+ Helm charts for application deployment and automated operational tasks with Python and Rundeck.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>DevOps Engineer</h3><p class="company">Unthinkable Solutions, Gurugram</p><p class="date">Oct 2021 - Oct 2023</p>
+                <ul>
+                    <li>Engineered scalable applications on ECS and EKS, implementing zero-touch CI/CD pipelines with Jenkins.</li>
+                    <li>Improved application security posture by integrating SonarQube and ECR image scanning into the development lifecycle.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="tools" class="fade-in">
+            <h2>Tools & Technologies</h2>
+            <div class="tools-grid">
+                <div class="tool"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS"><p>AWS</p></div>
+                <div class="tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure"><p>Azure</p></div>
+                <div class="tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes"><p>Kubernetes</p></div>
+                <div class="tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg" alt="Docker"><p>Docker</p></div>
+                <div class="tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt="Terraform"><p>Terraform</p></div>
+                <div class="tool"><img src="Argo-CD.svg" alt="ArgoCD"><p>ArgoCD</p></div>
+                <div class="tool"><img src="vault-svgrepo-com.svg" alt="Vault"><p>Vault</p></div>
+                <div class="tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><p>Python</p></div>
+                <div class="tool"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt="Grafana"><p>Grafana</p></div>
+            </div>
+        </section>
+
+        <section id="beyond-tech" class="fade-in">
+            <h2>Beyond Tech</h2>
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">My portfolio is not just about technical skills. Here's what I love beyond the world of DevOps.</p>
+            
+            <div class="passion-slider">
+                <div class="passion-slide active" style="background-image: url('IMG-20250902-WA0168.jpg');">
+                    <div class="passion-content">
+                        <h3>🏏 Cricket</h3>
+                        <p>Whether it's playing beach cricket or watching classic matches, cricket brings out the strategist in me and teaches teamwork under pressure. Every game is a lesson in strategy and persistence.</p>
+                    </div>
+                </div>
+                
+                <div class="passion-slide" style="background-image: url('20250911_080023.jpg');">
+                    <div class="passion-content">
+                        <h3>✈️ Travel</h3>
+                        <p>Exploring new places and cultures enriches my perspective and fuels creativity in both life and work. Every destination has a story to tell, and I love discovering them.</p>
+                    </div>
+                </div>
+                
+                <div class="passion-slide" style="background-image: url('20250624_082730.jpg');">
+                    <div class="passion-content">
+                        <h3>📷 Photography & Food</h3>
+                        <p>Capturing moments through the lens and savoring world cuisines teach me patience, precision, and appreciation for life's beautiful details. Every photo and meal tells a story.</p>
+                    </div>
+                </div>
+                
+                <div class="passion-slide" style="background-image: url('20250831_185621.jpg');">
+                    <div class="passion-content">
+                        <h3>🏃‍♂️ Athletics</h3>
+                        <p>Running, hiking, and temple visits keep me grounded while challenging my physical and mental limits. It's my way of staying balanced and finding inner peace.</p>
+                    </div>
+                </div>
+                
+                <div class="passion-slide" style="background-image: url('20250831_153038.jpg');">
+                    <div class="passion-content">
+                        <h3>🌌 Curious Learner</h3>
+                        <p>From the universe and nature to insects and history, I'm fascinated by everything around us. Learning never stops, and neither does my curiosity about the world.</p>
+                    </div>
+                </div>
+                
+                <div class="slider-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="fade-in">
+            <h2>Contact & Mentorship</h2>
+            <div style="text-align:center;">
+                <p>Open to collaborations and new opportunities. Let's connect and build something amazing together.</p>
+                <div class="session-button-container">
+                    <a href="https://topmate.io/akshit_malik/" target="_blank" style="text-decoration: none; color: #fff; background-color: var(--primary-color); padding: 12px 28px; border-radius: 50px; font-weight: 600; border: 2px solid var(--primary-color); transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,123,255,0.3);">Book a 1:1 Session</a>
+                </div>
+                <div class="contact-info-box">
+                    <p><strong>Email:</strong> <a href="mailto:career.akshit@gmail.com" style="color: var(--primary-color);">career.akshit@gmail.com</a></p>
+                    <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/careerakshit" target="_blank" style="color: var(--primary-color);">linkedin.com/in/careerakshit</a></p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/919719129353" target="_blank" style="color: var(--primary-color);">+91-9719129353</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><p>&copy; 2025 Akshit Malik. Designed and built with passion for tech and life.</p></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Theme Toggler ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let currentTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+
+            function applyTheme(theme) {
+                document.body.className = theme + '-mode';
+                themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem('theme', theme);
+            }
+            applyTheme(currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                applyTheme(currentTheme);
+            });
+
+            // --- Typed.js ---
+            new Typed('#typed-text', {
+                strings: ['Universe Intern', 'DevOps/Site Reliability Expert', 'Human.exe (Still Loading…)', 'Cloud Automation Architect',  'Certified Googler of Things'],
+                typeSpeed: 60, backSpeed: 30, loop: true
+            });
+
+            // --- Auto-rotating slider for Beyond Tech section (Slower - 7 seconds) ---
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.passion-slide');
+            const dots = document.querySelectorAll('.dot');
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            // Auto-advance slides every 7 seconds (slower)
+            let slideInterval = setInterval(nextSlide, 7000);
+
+            // Manual navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                    // Reset timer when user manually navigates
+                    clearInterval(slideInterval);
+                    slideInterval = setInterval(nextSlide, 7000);
+                });
+            });
+
+            // Initialize first slide
+            showSlide(0);
+
+            // --- DevOps Game ---
+            const stages = {
+                build: { icon: 'docker', filled: false },
+                test: { icon: 'sonarqube', filled: false },
+                deploy: { icon: 'kubernetes', filled: false }
+            };
+            const icons = [
+                { id: 'docker', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg' },
+                { id: 'kubernetes', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg' },
+                { id: 'sonarqube', src: 'https://cdn.worldvectorlogo.com/logos/sonarqube-1.svg' }
+            ];
+            const iconPool = document.getElementById('icon-pool');
+            const pipelineStages = document.querySelectorAll('.stage');
+            const feedback = document.getElementById('game-feedback');
+            
+            function shuffle(array) {
+                array.sort(() => Math.random() - 0.5);
+            }
+
+            function resetGame() {
+                iconPool.innerHTML = '';
+                pipelineStages.forEach(s => {
+                    s.innerHTML = s.dataset.stage.charAt(0).toUpperCase() + s.dataset.stage.slice(1);
+                    s.classList.remove('filled');
+                });
+                Object.keys(stages).forEach(key => stages[key].filled = false);
+                feedback.textContent = 'Drag the right tools to their pipeline stages!';
+                
+                shuffle(icons);
+                icons.forEach(icon => {
+                    const img = document.createElement('img');
+                    img.src = icon.src;
+                    img.id = icon.id;
+                    img.className = 'icon';
+                    img.draggable = true;
+                    iconPool.appendChild(img);
+                });
+                addDragListeners();
+            }
+
+            function addDragListeners() {
+                document.querySelectorAll('.icon').forEach(icon => {
+                    icon.addEventListener('dragstart', e => {
+                        e.dataTransfer.setData('text/plain', e.target.id);
+                    });
+                });
+            }
+
+            pipelineStages.forEach(stage => {
+                stage.addEventListener('dragover', e => e.preventDefault());
+                stage.addEventListener('drop', e => {
+                    e.preventDefault();
+                    const iconId = e.dataTransfer.getData('text/plain');
+                    const stageId = stage.dataset.stage;
+                    
+                    if (stages[stageId].icon === iconId) {
+                        const iconElem = document.getElementById(iconId);
+                        stage.innerHTML = '';
+                        stage.appendChild(iconElem);
+                        stage.classList.add('filled');
+                        stages[stageId].filled = true;
+                        feedback.textContent = "Great! Keep going...";
+                        feedback.style.color = "#28a745";
+                        checkWin();
+                    } else {
+                        feedback.textContent = "Wrong spot! Try again.";
+                        feedback.style.color = "#ff4d4d";
+                    }
+                });
+            });
+
+            function checkWin() {
+                if (Object.values(stages).every(s => s.filled)) {
+                    feedback.textContent = "🎉 Pipeline successful! You're a DevOps pro!";
+                    feedback.style.color = "#28a745";
+                    setTimeout(resetGame, 3000);
+                }
+            }
+            resetGame();
+
+            // --- Faster Fade-in on Scroll ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { 
+                threshold: 0.05, 
+                rootMargin: "0px 0px -20px 0px" 
+            };
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+            faders.forEach(fader => appearOnScroll.observe(fader));
+        });
+    </script>
+</body>
+</html>
